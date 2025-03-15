@@ -74,10 +74,14 @@ def library(request):
     return render(request, 'home/library.html', context)
 
 @login_required
-def remove_library(request,id):
-    wishlist = Library.objects.get(id = id)
-    wishlist.delete()
-    return redirect('library')
+def remove_library(request, book_id):
+    library_entry = get_object_or_404(
+        Library, 
+        user=request.user,       
+        book__id=book_id         
+    )
+    library_entry.delete()
+    return redirect('library') 
 
 @login_required
 def new_releases(request):
