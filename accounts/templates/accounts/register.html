@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Bookflix</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'base.css' %}">
+  <link rel="stylesheet" href="{% static 'register.css' %}">
+</head>
+<body>
+
+    {% load socialaccount %}
+    <!-- Add right below <body> tag -->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="global-alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+  <!-- Navigation (Fixed at the top) -->
+  <nav class="navbar">
+    <div class="navbar__left">
+      <div class="navbar__logo">BOOKLY</div>
+    </div>
+    <div class="navbar__right">
+      <a href="{% url 'home' %}" class="home-btn">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+    </div>
+  </nav>
+
+    <main class="container">
+        <section class="register">
+        <h2 class="category__title">Create an Account</h2>
+        <div class="register-card">
+            <form action="{% url 'register_page' %}" method="POST">
+                {% csrf_token %}
+            <div class="input-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="username" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Create a password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+            </div>
+            <button type="submit" class="btn btn--primary">Register</button>
+            
+            <!-- Divider -->
+            <div class="divider">
+                <span class="divider-line"></span>
+                <span class="divider-text">OR</span>
+                <span class="divider-line"></span>
+            </div>
+
+            <!-- Google Login Button -->
+            <a href="{% provider_login_url 'google' %}" class="btn btn--google">
+                <i class="fab fa-google"></i>
+                Continue with Google
+            </a>
+
+            <p class="login-link">Already have an account? <a href="{% url 'login_page' %}">Login</a></p>
+            </form>
+        </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer__copyright">&copy; 2025 Bookflix, Inc.</p>
+    </footer>
+</body>
+</html>

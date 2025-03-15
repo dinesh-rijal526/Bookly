@@ -1,0 +1,591 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #f5f0e6;
+    color: #3d3d3d;
+    font-family: 'Merriweather', serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-top: 70px;
+  }
+  
+  /* Navigation */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 4%;
+    background: #2c1810;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar__left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .navbar__logo {
+    color: #c49a6c;
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  
+  /* Mobile Menu */
+  .mobile-menu-container {
+    position: relative;
+  }
+  
+  .navbar__hamburger {
+    cursor: pointer;
+    color: #e5e5e5;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+  }
+  
+  .mobile-menu {
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: #2c1810;
+    border: 1px solid #c49a6c;
+    border-radius: 4px;
+    padding: 1rem;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    z-index: 1100;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .mobile-menu-container:focus-within .mobile-menu {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .mobile-menu a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #e5e5e5;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+  }
+  
+  .mobile-menu a:hover {
+    color: #c49a6c;
+  }
+  
+  /* Profile Dropdown */
+  .profile-menu {
+    position: relative;
+  }
+  
+  .profile-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+  }
+  
+  .profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #f5f0e6;
+    border-radius: 4px;
+    padding: 1rem;
+    min-width: 180px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .profile-menu:focus-within .profile-dropdown {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .profile-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #3d3d3d;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+  }
+  
+  .profile-dropdown a:hover {
+    color: #2c1810;
+  }
+  
+  /* Rest of your existing styles remain the same */
+  /* ... (keep all other existing styles from your original index.css) ... */
+  
+  .profile-dropdown i {
+    width: 20px;
+    text-align: center;
+    color: #c49a6c;
+  }
+  
+  /* Profile Icon Animation */
+  .profile-icon {
+    transition: all 0.3s ease;
+  }
+  
+  .profile-icon:hover {
+    transform: translateY(-2px);
+  }
+  
+  .profile-icon .fa-caret-down {
+    transition: transform 0.3s ease;
+  }
+  
+  .profile-menu:focus-within .profile-icon .fa-caret-down {
+    transform: rotate(180deg);
+  }
+    
+    .navbar__logo {
+      color: #c49a6c;
+      font-size: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    
+    .navbar__links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    
+    .navbar__links a {
+      color: #e5e5e5;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-size: 0.9rem;
+    }
+    
+    .navbar__links a:hover {
+      color: #c49a6c;
+    }
+    
+    .navbar__right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    /* Search Container */
+    /* Using absolute positioning for the input so the icon stays fixed */
+    .search-container {
+      position: relative;
+      display: inline-block;
+      order: -1;
+    }
+    
+    .search-icon {
+      color: #c49a6c;
+      font-size: 1rem;
+      z-index: 2;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .search-input {
+      position: absolute;
+      right: 100%; /* Position to the left of the icon */
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      opacity: 0;
+      border: 1px solid #c49a6c;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.1);
+      color: #e6e4e4;
+      font-family: 'Merriweather', serif;
+      transition: width 0.3s ease, opacity 0.3s ease;
+      padding: 0;
+      white-space: nowrap;
+    }
+    
+    .search-container:focus-within .search-input {
+      width: 200px;
+      opacity: 1;
+      padding: 0.5rem 1rem 0.5rem 2rem; /* Add left padding for text */
+      margin-right: 8px; /* Space between input and icon */
+    }
+    
+    /* Profile Menu (using focus-within for auto-hide and slide effect) */
+    .profile-menu {
+      position: relative;
+      outline: none;
+    }
+    
+    .profile-icon {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+      color: #e5e5e5;
+    }
+    
+    .profile-icon:hover {
+      background: rgba(196, 154, 108, 0.1);
+    }
+    
+    .profile-icon img.profile-picture {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    .profile-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: #f5f0e6;
+      border-radius: 4px;
+      padding: 1rem;
+      min-width: 180px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ddd;
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+    
+    .profile-menu:focus-within .profile-dropdown {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .profile-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: #3d3d3d;
+      text-decoration: none;
+      padding: 0.5rem 0;
+      transition: color 0.3s ease;
+    }
+    
+    .profile-dropdown a:hover {
+      color: #2c1810;
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 70vh;
+      background: linear-gradient(rgba(44, 24, 16, 0.2), rgba(44, 24, 16, 0.2)),
+        url('https://via.placeholder.com/1920x1080?text=Featured+Book') center/cover;
+      display: flex;
+      align-items: center;
+      padding: 0 4%;
+      border-bottom: 3px solid #2c1810;
+    }
+    
+    .hero__content {
+      max-width: 40%;
+      background: rgba(245, 240, 230, 0.9);
+      padding: 2rem;
+      border-radius: 5px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .hero__title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #2c1810;
+    }
+    
+    .hero__author {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: #6b4f3a;
+      font-style: italic;
+    }
+    
+    .hero__synopsis {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      line-height: 1.8;
+      color: #4d4d4d;
+    }
+    
+    .hero__buttons .btn {
+      text-decoration: none;
+      padding: 0.7rem 1.5rem;
+      margin-right: 0.5rem;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+      font-weight: bold;
+    }
+    
+    .btn--red {
+      background: #c0392b;
+      color: white;
+    }
+    
+    .btn--red:hover {
+      background: #a93226;
+    }
+    
+    .btn--dark {
+      background: #2c3e50;
+      color: white;
+    }
+    
+    .btn--dark:hover {
+      background: #1a252f;
+    }
+    
+    /* Book Cards */
+    .book-row {
+      display: flex;
+      overflow-x: auto;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      scroll-behavior: smooth;
+    }
+    
+    .book-card {
+      min-width: 220px;
+      position: relative;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      border-radius: 4px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .book-card img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-bottom: 3px solid #c49a6c;
+    }
+    
+    .book-card__overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(44, 24, 16, 0.9));
+      padding: 1rem;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .book-card:hover .book-card__overlay {
+      opacity: 1;
+    }
+    
+    .rating {
+      color: #ffd700;
+      margin-bottom: 0.5rem;
+    }
+    
+    .genres {
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+    
+    /* Modal using :target */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 2000;
+    }
+    
+    .modal:target {
+      display: block;
+    }
+    
+    .modal__content {
+      background: #f5f0e6;
+      width: 70%;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      position: relative;
+      border-radius: 5px;
+      border: 2px solid #2c1810;
+    }
+    
+    .modal__close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      text-decoration: none;
+      color: #2c1810;
+    }
+    
+    /* Footer */
+    .footer {
+      padding: 3rem 4%;
+      text-align: center;
+      border-top: 1px solid #ddd;
+      background: #2c1810;
+      color: #c49a6c;
+      margin-top: 4rem;
+    }
+    
+    .footer__links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .footer__links a {
+      color: #c49a6c;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer__links a:hover {
+      color: #f5f0e6;
+    }
+    
+    .footer__social {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      color: #c49a6c;
+    }
+    
+    .footer__social i {
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    
+    .footer__social i:hover {
+      color: #f5f0e6;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .navbar__links {
+        display: none;
+      }
+      
+      .hero__content {
+        max-width: 60%;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        height: 50vh;
+      }
+      
+      .hero__content {
+        max-width: 100%;
+        padding: 1.5rem;
+      }
+      
+      .hero__title {
+        font-size: 2rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .navbar__logo {
+        font-size: 1.5rem;
+      }
+      
+      .search-input {
+        width: 150px;
+      }
+      
+      .modal__content {
+        width: 90%;
+        padding: 1.5rem;
+      }
+    }
+    
+
+/* Error Message Styles */
+.global-alert {
+    position: fixed;
+    top: 70px; /* Below navbar */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 2.5rem;
+    background: #a93226;
+    color: white;
+    border-radius: 0 0 8px 8px;
+    font-family: 'Merriweather', serif;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 1000;
+    animation: alertSlide 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    border: 1px solid #8c281e;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    opacity: 0;
+  }
+  
+  .global-alert::before {
+    content: "\f06a";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+  }
+  
+  @keyframes alertSlide {
+    0%, 100% {
+      opacity: 0;
+      transform: translate(-50%, -100%);
+    }
+    10%, 90% {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }

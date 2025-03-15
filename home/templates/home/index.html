@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero__content">
+        <h1 class="hero__title">The Great Adventure</h1>
+        <p class="hero__author">By J.K. Novelist</p>
+        <p class="hero__synopsis">
+            In a world where books come alive, a young librarian discovers she can enter fictional worlds. But when a dark force threatens to erase all stories, she must team up with classic characters to save literature forever.
+        </p>
+        <div class="hero__buttons">
+            <a href="#" class="btn btn--red">Read Now</a>
+            <a href="#" class="btn btn--dark">Add to Library</a>
+        </div>
+        </div>
+    </section>
+    
+    <main class="container">
+        <section class="new-releases">
+        <h2 class="category__title">Trending Now</h2>
+        <div class="book-grid">
+            <!-- Book 1 -->
+             {% for book in books %}
+            <div class="book-card">
+            <img src="{{ book.image.url }}" alt="{{ book.title }}">
+            <div class="book-card__overlay">
+                <h3>{{ book.title }}</h3>
+                <div class="genres">
+                    {% for genre in book.genres.all %}
+                      {{ genre.genre }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                      No genres
+                {% endfor %}
+                </div>
+                <a href="{% url 'about_book' book.id %}" class="btn btn--secondary">{{ book.title }}</a>
+                <div class="release-buttons">
+                {% if user.is_authenticated %}
+                <a href="{{ book.pdf.url }}" class="btn btn--info">Read Now</a>
+                <a href="{% url 'add_to_library' book.id %}" class="btn btn--secondary">Add to Library</a>
+                {% endif %}
+                </div>
+            </div>
+            </div>
+             {% endfor %}
+        </div>
+        </section>
+    </main>
+    
+
+{% endblock %}

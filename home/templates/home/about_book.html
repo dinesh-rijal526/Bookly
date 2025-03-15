@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!-- Book Main Content -->
+    <main class="container book-detail">
+        <div class="book-header">
+        <img src="{{ book.image.url }}" alt="{{ book.title }}" class="book-cover">
+        <div class="book-meta">
+            <h1 class="hero__title">{{ book.title }}</h1>
+            <p class="hero__author">By {{ book.author }}</p>
+            <div class="rating">★★★★☆ 4.2/5 (1,234 ratings)</div>
+            <div class="genres">
+                {% for genre in book.genres.all %}
+                      {{ genre.genre }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                      No genres
+                {% endfor %}
+
+            </div>
+            <div class="book-actions">
+            <a href="{{ book.pdf.url }}" class="btn btn--red">Read Now</a>
+            <a href="{% url 'add_to_library' book.id %}" class="btn btn--dark">Add to Library</a>
+            <a href="{% url 'download_pdf' book.id %}" class="btn btn--green">Download</a>
+            </div>
+        </div>
+        </div>
+
+        <div class="book-content">
+        <section class="synopsis">
+            <h2 class="section-title">Synopsis</h2>
+            <p class="hero__synopsis">
+            In a world where books come alive, a young librarian discovers she can enter fictional worlds. 
+            But when a dark force threatens to erase all stories, she must team up with classic characters 
+            to save literature forever. A thrilling journey through iconic literary landscapes with 
+            unexpected twists at every chapter.
+            </p>
+        </section>
+
+        <section class="author-info">
+            <h2 class="section-title">About the Author</h2>
+            <div class="author-bio">
+            <img src="{{ book.image.url }}" alt="J.K. Novelist" class="author-photo">
+            <div class="author-details">
+                <h3>{{ book.author }}</h3>
+                <p>Bestselling author of 12 fantasy novels, winner of the 2020 Literary Excellence Award. 
+                Known for creating immersive worlds and complex characters that resonate with readers worldwide.</p>
+            </div>
+            </div>
+        </section>
+
+        <section class="book-details">
+            <h2 class="section-title">Book Details</h2>
+            <div class="detail-grid">
+            <div class="detail-item">
+                <i class="fas fa-book-open"></i>
+                <span>{{ book.pages }} pages</span>
+            </div>
+            <div class="detail-item">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Published: {{book.publication_date}}</span>
+            </div>
+            <div class="detail-item">
+                <i class="fas fa-language"></i>
+                <span>{{book.language}}</span>
+            </div>
+            <div class="detail-item">
+                <i class="fas fa-file-alt"></i>
+                <span>ISBN: {{book.isbn}}</span>
+            </div>
+            </div>
+        </section>
+        </div>
+    </main>
+
+{% endblock %}

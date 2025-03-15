@@ -1,0 +1,105 @@
+/* New Releases Page Styles */
+.new-releases {
+    padding: 2rem 4%;
+    margin-top: 4rem;
+  }
+  
+  .new-releases .category__title {
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    color: #2c1810;
+    border-bottom: 2px solid #c49a6c;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  /* Book Grid */
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+  }
+  
+  /* Book Cards */
+  .book-card {
+    width: 100%;
+    max-width: 220px;
+    padding-top: 30px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .book-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
+  .book-card__overlay {
+    background: rgba(44, 24, 16, 0.9);
+    color: #f5f0e6;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .release-date {
+    font-size: 0.9rem;
+    color: #c49a6c;
+    margin: 0.5rem 0;
+  }
+  
+  /* Buttons */
+  .release-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .release-buttons .btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .btn--info {
+    background: #c0392b;
+    color: white;
+  }
+  
+  .btn--info:hover {
+    background: #a93226;
+  }
+  
+  .btn--secondary {
+    background: #2c3e50;
+    color: white;
+  }
+  
+  .btn--secondary:hover {
+    background: #1a252f;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .book-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+  

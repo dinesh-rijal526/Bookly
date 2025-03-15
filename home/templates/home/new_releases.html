@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!-- Main Content: New Releases -->
+    <main class="container">
+        <section class="new-releases">
+        <h2 class="category__title">Latest Book Releases</h2>
+        <div class="book-grid">
+            <!-- Book 1 -->
+             {% for book in books %}
+            <div class="book-card">
+            <img src="{{ book.image.url }}" alt="{{ book.title }}">
+            <div class="book-card__overlay">
+                <h3>{{ book.title }}</h3>
+                <div class="genres">
+                    {% for genre in book.genres.all %}
+                      {{ genre.genre }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                      No genres
+                {% endfor %}
+                </div>
+                <div class="release-date">Released: {{book.publication_date}}</div>
+                <div class="release-buttons">
+                <a href="{{ book.pdf.url }}" class="btn btn--info">Read Now</a>
+                <a href="{% url 'add_to_library' book.id %}" class="btn btn--secondary">Add to Library</a>
+                </div>
+            </div>
+            </div>
+             {% endfor %}
+        </div>
+        </section>
+    </main>
+
+{% endblock %}

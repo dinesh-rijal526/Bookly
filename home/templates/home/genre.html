@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <!-- Main Content: Genres Section -->
+    <main class="container">
+        <section class="genres">
+        <h2 class="category__title">Browse by Genre</h2>
+        <div class="genre-grid">
+            <!-- Genre 1 -->
+             {% for genre in genres %}
+            <div class="genre-card">
+            <a href="{% url 'genre_books' genre.id %}">
+                <img src="{{ genre.book.first.image.url }}" alt="{{genre.book.first.title}}">
+            </a>
+            <div class="genre-name">{{genre.genre}}</div>
+            </div>
+              {% endfor %}
+        </div>
+        </section>
+    </main>
+
+{% endblock %}
